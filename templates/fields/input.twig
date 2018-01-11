@@ -1,0 +1,70 @@
+{#
+/**
+ * Listing Source plugin for Craft CMS
+ *
+ * ListingSourceFieldType HTML
+ *
+ * @author    Kurious Agency
+ * @copyright Copyright (c) 2018 Kurious Agency
+ * @link      https://kurious.agency
+ * @package   ListingSource
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% set singleType = types|length == 1 ? types[0] : null %}
+{% set type = singleType ? singleType : ( value.type is defined and value.type ? value.type : null) %}
+
+<div id="{{ name }}" class="listingsource-field listingsource">
+
+	{# Type #}
+	{% if singleType %}
+
+		<input type="hidden" id="{{ name }}Type" name="{{ name }}[type]" value="{{ type }}" />
+
+	{% else %}
+
+		<div class="listingsource-type">
+		{{ forms.selectField({
+			id: name~'-Type',
+			class: name~'-Type',
+			name: name~'[type]',
+			options: types,
+			value: type ? type
+		}) }}
+		</div>
+
+	{% endif %}
+
+	{# Options #}
+	<div class="listingsource-options{{ type == '' ? ' hidden' }}">
+
+		{% if types.channel is defined %}
+
+		<div class="listingsource-option listingsource-channel{{ type != 'channel' ? ' hidden' }}">
+			{{ forms.selectField({
+				id: name~'Channel',
+				class: name~'Channel',
+				name: name~'[channel]',
+				options: elementSelectSettings.channel.options,
+				value: type == 'channel' ? value.value
+			}) }}
+		</div>
+		{% endif %}
+
+		{% if types.entry is defined %}
+		<div class="listingsource-option listingsource-entry{{ type != 'entry' ? ' hidden' }}">
+			{{ forms.elementSelectField({
+				id: name~'Entry',
+				class: name~'Entry',
+				name: name~'[entry]',
+			}|merge(elementSelectSettings.entry)) }}
+		</div>
+		{% endif %}
+
+	</div>
+
+</div>
+

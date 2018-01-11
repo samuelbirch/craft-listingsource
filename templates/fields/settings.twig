@@ -1,0 +1,79 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.checkboxSelectField({
+	label: "Source Types"|t,
+	instructions: "Select the types of sources you would like available."|t,
+	id: 'types',
+	name: 'types',
+	options: types,
+	values: settings.types,
+	errors: settings.getErrors('types'),
+	showAllOption: false,
+}) }}
+
+{% if elementSources.channel %}
+
+	<hr>
+
+	{{ forms.checkboxSelectField({
+		label: "Channels"|t,
+		instructions: "Which channels do you want to select from?"|t,
+		id: 'channelSources',
+		name: 'channelSources',
+		options: elementSources.channel,
+		values: settings.channelSources,
+		errors: settings.getErrors('channelSources'),
+	})}}
+
+{% else %}
+	{# {{ forms.field({
+		label: "Entry Sources"|t,
+		instructions: "No entry sources exist yet."|t
+	}) }} #}
+{% endif %}
+
+{% if elementSources.entry %}
+
+	<hr>
+
+	{{ forms.checkboxSelectField({
+		label: "Entry Sources"|t,
+		instructions: "Which sources do you want to select entries from?"|t,
+		id: 'entrySources',
+		name: 'entrySources',
+		options: elementSources.entry,
+		values: settings.entrySources,
+		errors: settings.getErrors('entrySources'),
+	})}}
+
+{% else %}
+	{# {{ forms.field({
+		label: "Entry Sources"|t,
+		instructions: "No entry sources exist yet."|t
+	}) }} #}
+{% endif %}
+
+
+
+
+{# {% for elementTypeHandle, elementTypeConfig in thirdPartyElementTypes %}
+	<hr>
+
+	{{ forms.checkboxSelectField({
+		label: elementTypeConfig.name|t,
+		instructions: "Which sources do you want to select "~elementTypeConfig.pluralName|lower~" from?"|t,
+		id: elementTypeHandle~'Sources',
+		name: elementTypeHandle~'Sources',
+		options: elementTypeConfig.sources,
+		values: settings[elementTypeHandle~'Sources'],
+		errors: settings.getErrors(elementTypeHandle~'Sources'),
+	})}}
+
+	{{ forms.textField({
+		label: elementTypeConfig.name~" Selection Label"|t,
+		instructions: "Enter the text you want to appear on the "~elementTypeConfig.name|lower~" selection input."|t,
+		name: elementTypeHandle~'SelectionLabel',
+		value: settings[elementTypeHandle~'SelectionLabel']
+	}) }}
+
+{% endfor %} #}

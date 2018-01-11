@@ -1,0 +1,14 @@
+{
+	"name": "/listingsource",
+	"description": "Gets the entries for a list page form either a channel or from child pages.",
+	"type": "craft-plugin",
+	"authors": [
+		{
+			"name": "Kurious Agency",
+			"homepage": "https://kurious.agency"
+		}
+	],
+	"require": {
+		"composer/installers": "~1.0"
+	}
+}

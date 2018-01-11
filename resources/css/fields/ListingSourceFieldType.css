@@ -1,0 +1,52 @@
+/**
+ * Listing Source plugin for Craft CMS
+ *
+ * ListingSourceFieldType CSS
+ *
+ * @author    Kurious Agency
+ * @copyright Copyright (c) 2018 Kurious Agency
+ * @link      https://kurious.agency
+ * @package   ListingSource
+ * @since     1.0.0
+ */
+
+.listingsource-field {
+    overflow: hidden;
+}
+
+.listingsource-field-column {
+    width: 50%;
+    float: left;
+}
+
+.listingsource-field-column:first-child div {
+    padding-right: 10px;
+}
+
+.listingsource-field-column .checkboxfield {
+    padding-top: 5px;
+}
+
+.listingsource {}
+
+.listingsource-type {
+    float: left;
+    margin-right: 10px;
+}
+
+.listingsource-type select {
+    max-width: 130px;
+}
+
+.listingsource-options {
+    float: left;
+}
+
+.listingsource-options .input .elementselect .element {
+    margin: 0;
+}
+
+.listingsource-settings {
+    clear: both;
+    padding-top: 10px;
+}
